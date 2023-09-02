@@ -1,0 +1,30 @@
+.stickyTodo {
+    background-color: #eee;
+    width: 200px;
+    height: 100px;
+    border: 1px dotted black;
+    overflow-y: scroll; /* Add the ability to scroll */
+  }
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .stickyTodo::-webkit-scrollbar {
+      display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .stickyTodo {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .stickyTodo{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: 0px;
+    cursor: pointer;
+
+    &:hover{
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        cursor: pointer;
+        border: 2px solid #ffb703;
+    }
+  }
