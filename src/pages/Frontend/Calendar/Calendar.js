@@ -2,7 +2,7 @@ import { message } from 'antd'
 import React, { useContext, useState } from 'react'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { PiTrashLight } from 'react-icons/pi'
-import {  deleteDoc, doc, setDoc } from 'firebase/firestore/lite'
+import { deleteDoc, doc, setDoc } from 'firebase/firestore/lite'
 import { firestore } from '../../../config/firebase'
 import { FetchTodosContext } from '../../../contexts/FetchTodosContext'
 import { useEffect } from 'react'
@@ -10,35 +10,49 @@ import dayjs from 'dayjs'
 
 
 
-// const initialState = { title: "", date: "", list: "", description: "", color: "" }
-export default function Today() {
+
+export default function Calendar() {
 
   // UseState Hooks
-  
+
   const [isUpdate, setIsUpdate] = useState(false)
   const [editTodo, setEditTodo] = useState({})
-  const [todayDate, setTodayDate]= useState('')
- 
+  const [todayDate, setTodayDate] = useState('')
+  const [stateForDate, setStateForDate] = useState({})
+
   // FetchTodosContext sy value mangwa rhy ha yaha 
   const { fetchTodos, setFetchTodos, fetchedTodos } = useContext(FetchTodosContext)
 
- // _________________________________________________________________________________________________________________________________________
+  // _________________________________________________________________________________________________________________________________________
 
-//  IS file ma srf ya code add hoa ha baki purana ha 
-useEffect(()=>{
-  const currentDate = dayjs().format('YYYY-MM-DD')
+  //  IS file ma srf ya code add hoa ha baki purana ha 
+  useEffect(() => {
+    const currentDate = dayjs().format('YYYY-MM-DD')
     setTodayDate(currentDate)
     fetchedTodos()
 
-},[])
-let todayTodos = fetchTodos.filter((todoFromFirebase)=> todoFromFirebase.date === todayDate)
-console.log('todayTodos', todayTodos)
+  }, [])
+  let calendarTodos = fetchTodos.filter((todoFromFirebase) => todoFromFirebase.date === stateForDate.date)
 
-  
 
- 
- 
- // _________________________________________________________________________________________________________________________________________
+
+
+
+
+  // _________________________________________________________________________________________________________________________________________
+  //  Handle Change function for Date
+
+  const handleChangeForDate = (e) => {
+
+    setStateForDate(s => ({...s, [e.target.name]: e.target.value}))
+  }
+
+
+
+
+
+
+  // _________________________________________________________________________________________________________________________________________
 
 
   // Handle Change For EDit Todo Modal
@@ -107,14 +121,27 @@ console.log('todayTodos', todayTodos)
 
           <div className="row">
             <div className="col">
-              <h2>Today <sup className='text-primary' style={{ fontSize: '20px', }}>({todayTodos.length})</sup> </h2>
+              <h2>Calendar <sup className='text-primary' style={{ fontSize: '20px', }}>({calendarTodos.length})</sup> </h2>
             </div>
           </div>
+
+
+          {/* Input Field to select todo date */}
+
+          <div className="row">
+            <div className="col-12 col-md-8 my-4 m-auto border border-2 border-warning rounded-3 inputBox p-3" >
+              <label className='fw-bold fs-5 mb-2 ms-1 '>Select Date <span className='fs-6 fw-normal text-secondary'>(For todo)</span> </label>
+              <input type="date" className='form-control' name='date' required value={stateForDate.date} onChange={handleChangeForDate} />
+            </div>
+          </div>
+
+
+
 
           <div className=" row">
 
 
-            {todayTodos.map((todo) => {
+            {calendarTodos.map((todo) => {
               return (
                 <div className="col-12 col-md-4 " style={{ height: '35vh', }}>
                   <div className="row">
@@ -159,7 +186,7 @@ console.log('todayTodos', todayTodos)
             })
             }
 
-          
+
           </div>
 
         </div>

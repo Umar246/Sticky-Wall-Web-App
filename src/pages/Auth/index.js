@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Login from './Login/Login'
-import Signup from './Signup/Signup'
+import Register from './Register'
 import NoPage from './NoPage/NoPage'
 
 export default function index() {
@@ -10,7 +10,7 @@ export default function index() {
     
     <Routes>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/signup' element={<Signup/>}/>
+        <Route path='/register' element={<Register/>}/>
         <Route path='*' element={<NoPage/>}/>
     </Routes>
     

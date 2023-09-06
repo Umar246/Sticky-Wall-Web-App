@@ -21,10 +21,11 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border: 0px;
     cursor: pointer;
+    border: 2px solid #ffb703;
 
     &:hover{
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         cursor: pointer;
-        border: 2px solid #ffb703;
+        
     }
   }

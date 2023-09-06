@@ -1,10 +1,10 @@
 import React from 'react'
-import Signup from './Signup'
+import Calendar from './Calendar'
 
 export default function index() {
   return (
     <>
-    <Signup/>
+    <Calendar/>
     </>
   )
 }

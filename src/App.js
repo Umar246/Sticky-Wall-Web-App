@@ -4,10 +4,14 @@ import './App.scss'
 import Routes from './pages/Routes'
 
 
+
 export default function App() {
   return (
     <>
-<Routes/>
+
+  
+        <Routes />
+      
     </>
   )
 }
